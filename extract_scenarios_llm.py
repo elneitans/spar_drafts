@@ -65,7 +65,7 @@ if load_dotenv is not None:
     load_dotenv()
 
 
-DEFAULT_OUTPUT = "safety_ethics_scenarios_llm_judge.jsonl"
+DEFAULT_OUTPUT = "scenarios_llm.jsonl"
 DEFAULT_BASE_URL = "https://api.deepseek.com"
 DEFAULT_MODEL = "deepseek-chat"
 DEFAULT_MAX_RETRIES = 3

@@ -18,11 +18,6 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 try:
-    from dotenv import load_dotenv
-except ImportError:  # pragma: no cover - optional dependency
-    load_dotenv = None
-
-try:
     from openai import OpenAI
     OPENAI_AVAILABLE = True
 except ImportError:  # pragma: no cover - handled at runtime
@@ -34,11 +29,6 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from extract_scenarios import infer_output_format, write_jsonl
 from run_qwen3_transformers import generate_one, resolve_dtype
-
-
-if load_dotenv is not None:
-    load_dotenv()
-
 
 DEFAULT_INPUT = "outputs/scenarios_perturbed_llm.csv"
 DEFAULT_OUTPUT = "outputs/qwen_perturbation_judged.csv"

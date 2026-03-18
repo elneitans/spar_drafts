@@ -39,6 +39,14 @@ from urllib.request import Request, urlopen
 
 from extract_scenarios import infer_output_format, write_csv, write_jsonl
 
+try:
+    from dotenv import load_dotenv
+except ImportError:  # pragma: no cover - optional dependency
+    load_dotenv = None
+
+if load_dotenv is not None:
+    load_dotenv()
+
 DEFAULT_MODEL = "deepseek-chat"
 DEFAULT_BASE_URL = "https://api.deepseek.com"
 DEFAULT_OUTPUT = "outputs/scenarios_perturbed_llm.csv"
