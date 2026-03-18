@@ -1,0 +1,46 @@
+# requirements_antuco_rocm_llm.txt
+# Purpose: inference with Transformers on AMD MI210 (ROCm) for:
+#   - Qwen/Qwen3-14B
+#   - ServiceNow-AI/Apriel-1.6-15b-Thinker
+#
+# IMPORTANT
+# 1) Install PyTorch/torchvision/torchaudio for ROCm FIRST using the exact command below.
+#    Do NOT rely on plain pip for torch on AMD.
+# 2) Then install the packages listed below.
+# 3) Qwen3 requires transformers >= 4.51.0.
+# 4) Apriel-1.6's model card says it was tested with transformers==4.48.
+#    It may still work with newer transformers, but if Apriel fails, create a second env just for Apriel.
+#
+# Recommended Python version: 3.11
+#
+# STEP 1 — install ROCm PyTorch
+# pip install torch==2.8.0 torchvision==0.23.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/rocm6.4
+#
+# STEP 2 — install the packages below
+accelerate>=1.4.0
+transformers>=4.51.0
+huggingface_hub>=0.30.0
+safetensors>=0.5.0
+sentencepiece>=0.2.0
+protobuf>=5.0.0
+numpy>=1.26,<3
+scipy>=1.13.0
+pillow>=10.0.0
+requests>=2.32.0
+einops>=0.8.0
+packaging>=24.0
+psutil>=6.0.0
+
+# Optional but recommended for easier notebook / debugging workflows
+ipykernel>=6.29.0
+ipywidgets>=8.1.0
+
+# Optional helpers
+datasets>=3.0.0
+trl>=0.15.0
+
+# Notes:
+# - For pure inference, bitsandbytes is NOT included because AMD/ROCm support is not the standard path.
+# - flash-attn is NOT included because ROCm builds can be environment-specific and may fail in shared clusters.
+# - optimum-amd is NOT required for basic Transformers inference on ROCm.
+# - If using gated/private models, also run: huggingface-cli login
